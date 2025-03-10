@@ -1,9 +1,11 @@
+/*
 import * as fs from 'fs';
 import { FileSystem } from './FileSystem';
-
+*/
 /**
  * Implementación concreta de FileSystem que utiliza el módulo fs de Node.js.
  */
+/*
 export class FSFileSystem implements FileSystem {
   public readFile(filePath: string): string {
     try {
@@ -23,3 +25,4 @@ export class FSFileSystem implements FileSystem {
     }
   }
 }
+*/
