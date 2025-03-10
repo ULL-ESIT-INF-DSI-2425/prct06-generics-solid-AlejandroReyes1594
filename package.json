@@ -13,7 +13,7 @@
     "dev8": "tsc-watch --onSuccess \"node dist/ejercicio-8.js\"",
     "dev9": "tsc-watch --onSuccess \"node dist/ejercicio-9.js\"",
     "dev10": "tsc-watch --onSuccess \"node dist/ejercicio-10.js\"",
-    "devc1": "tsc-watch --onSuccess \"node dist/ejercicio-clase1/pruebas.js\"",
+    "devc1": "tsc-watch --onSuccess \"node dist/ejercicio-clase1/main.js\"",
     "devc2": "tsc-watch --onSuccess \"node dist/ejercicioclase-2.js\"",
     "devc3": "tsc-watch --onSuccess \"node dist/ejercicioclase-3.js\"",
     "t1": "vitest run ejercicio-1.spec.ts",

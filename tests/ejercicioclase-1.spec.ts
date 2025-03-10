@@ -1,57 +1,40 @@
 /**
  * Fichero test para probar las funcionalidades del codigo
  */
-import { describe, test, expect } from "vitest";
-import { Estudiante } from "../src/ejercicio-clase1/Estudiante";
-import { Profesor } from "../src/ejercicio-clase1/Profesor";
-import { Asignatura } from "../src/ejercicio-clase1/Asignatura";
 
-describe("Asignatura", () => {
-    //creamos estudiantes y profesores
-  const estudiante1 = new Estudiante("Juan", "Pérez", new Date(2000, 5, 15),  4, true, "juan@ull.edu.es", false);
-  const estudiante2 = new Estudiante("Ana", "López", new Date(2001, 8, 22), 0, false, "ana@ull.edu.es", true);
-  const profesor1 = new Profesor("Carlos", "Gómez", new Date(1980, 3, 10), 6, true , "carlos@ull.edu.es", "Lunes 10-12", 5);
+import { describe, expect, test } from 'vitest';
+import { CustomList } from '../src/ejercicio-clase1/custom_list';
 
-    //creamos una asignatura
-  const asignatura = new Asignatura("DSI102", "Desarrollo de Sistemas Informaticos", "Ingeniería Informática");
-
-    //agregamos los estudiantes y profesores a la asignatura
-  asignatura.agregarProfesor(profesor1);
-  asignatura.agregarEstudiante(estudiante1, 8.0);
-  asignatura.agregarEstudiante(estudiante2, 7.5);
-
-    // casos de busqueda de profesor
-  test("Debe buscar correctamente un profesor", () => {
-    expect(asignatura.buscarProfesor("Carlos")?.mostrarDatos()).toContain("Carlos Gómez");
+describe("CustomList", () => {
+  test("append debe añadir elementos de una lista a otra", () => {
+    const list1 = new CustomList<number>([1, 2, 3]);
+    const list2 = new CustomList<number>([4, 5]);
+    list1.append(list2);
+    expect(list1.toArray()).toEqual([1, 2, 3, 4, 5]);
   });
 
+  test("concatenate debe combinar varias listas", () => {
+    const list1 = new CustomList<number>([1, 2]);
+    const list2 = new CustomList<number>([3, 4]);
+    const list3 = new CustomList<number>([5, 6]);
+    const result = CustomList.concatenate(list1, list2, list3);
+    expect(result.toArray()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 
-  test("Debe devolver undefined si el profesor ne", () => {
-    expect(asignatura.buscarProfesor("noexiste")).toBeUndefined();
+  test("filter debe retornar elementos que cumplan el predicado", () => {
+    const list = new CustomList<number>([1, 2, 3, 4, 5]);
+    expect(list.filter(n => n > 2).toArray()).toEqual([3, 4, 5]);
+  });
+
+  test("length debe retornar el número de elementos", () => {
+    const list = new CustomList<number>([1, 2, 3]);
+    expect(list.length()).toBe(3);
+  });
+
+  test("map debe aplicar una función a cada elemento", () => {
+    const list = new CustomList<number>([1, 2, 3]);
+    expect(list.map(n => n * 2).toArray()).toEqual([2, 4, 6]);
   });
   
-
-
-
-  // casos de busqueda de estudiante
-  test("Debe buscar correctamente un estudiante", () => {
-    expect(asignatura.buscarEstudiante("Juan")?.mostrarDatos()).toContain("Juan Pérez");
-  });
-
-  test("Debe buscar correctamente un estudiante", () => {
-    expect(asignatura.buscarEstudiante("noexisto")).toBeUndefined();
-  });  
-
-
-  // casos de busqueda mediante calificacion
-  test("Debe encontrar estudiantes con calificación 8.0", () => {
-    expect(asignatura.obtenerPorCalificacion(8.0)).toContain("Juan Pérez");
-  });
-
-  test("Debe encontrar estudiantes con calificación 7.0 (ninguno)", () => {
-    expect(asignatura.obtenerPorCalificacion(7.0)).toContain("")
-  });
-
-
-
-});
+  test(" ")
+})
