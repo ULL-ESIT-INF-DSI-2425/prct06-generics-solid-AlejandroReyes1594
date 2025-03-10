@@ -1,5 +1,5 @@
 {
-  "name": "pr5",
+  "name": "pr6",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -47,8 +47,12 @@
     "globals": "^15.14.0",
     "prettier": "^3.5.0",
     "tsc-watch": "^6.2.1",
-    "typedoc": "^0.27.6",
+    "typedoc": "^0.27.9",
+    "typescript": "5.7",
     "typescript-eslint": "^8.23.0",
     "vitest": "^3.0.6"
+  },
+  "dependencies": {
+    "undici": "^7.4.0"
   }
 }
