@@ -78,6 +78,43 @@ export class CustomList<T> {
     }
   
     /**
+     * Aplica una función acumuladora a cada elemento de la lista, reduciéndola a un solo valor.
+     * @param callback - Función que toma un acumulador y un elemento, y devuelve un nuevo acumulador.
+     * @param initialValue - Valor inicial del acumulador.
+     * @returns El valor acumulado después de aplicar la función a todos los elementos.
+     */
+    reduce<U>(callback: (acc: U, element: T) => U, initialValue: U): U {
+        let accumulator = initialValue;
+        for (const item of this.elements) {
+        accumulator = callback(accumulator, item);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Devuelve una nueva lista con los elementos en orden inverso.
+     * @returns Una nueva lista con los elementos en orden contrario al original.
+     */
+    reverse(): CustomList<T> {
+        const result = new CustomList<T>();
+        for (let i = this.length() - 1; i >= 0; i--) {
+        result.append(new CustomList([this.elements[i]]));
+        }
+        return result;
+    }
+
+    /**
+     * Itera sobre la lista y ejecuta una función en cada elemento.
+     * @param callback - Función que se ejecuta con cada elemento de la lista.
+     */
+    forEach(callback: (element: T) => void): void {
+        for (const elemento of this.elements) {
+        callback(elemento);
+        }
+    }
+
+
+    /**
      * Devuelve un elemento en una posición específica
      * @param index - La posición del elemento a obtener
      * @returns El elemento en la posición indicada
