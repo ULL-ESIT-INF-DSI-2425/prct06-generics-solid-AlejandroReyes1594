@@ -26,7 +26,7 @@ describe("Asignatura", () => {
   });
 
 
-  test("Debe devolver undefined si el profesor no existe", () => {
+  test("Debe devolver undefined si el profesor ne", () => {
     expect(asignatura.buscarProfesor("noexiste")).toBeUndefined();
   });
   
