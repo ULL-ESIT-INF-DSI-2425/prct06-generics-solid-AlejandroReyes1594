@@ -25,7 +25,7 @@ describe("Pokedex", () => {
   pokedex.agregarPokemon(charizard);
   pokedex.agregarPokemon(blastoise);
 
-  test("Debe agregar y encontrar un Pokémon por nombre", () => {
+  test("Debe agregar y encontrar unkémon por nombre", () => {
     expect(pokedex.buscarPorNombre("Charizard")).toBe(charizard);
     expect(pokedex.buscarPorNombre("Blastoise")).toBe(blastoise);
     expect(pokedex.buscarPorNombre("Pikachu")).toBeUndefined();
