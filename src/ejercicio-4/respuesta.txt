@@ -1,0 +1,4 @@
+En este ejercicio, se está violando el principio de segregación de interfaces de los principios SOLID,
+ debido a que la interfaz PrintableScannable obliga a las clases Printer y Scanner a implementar métodos que no usan.
+  Este principio establece que una clase no debería verse obligada a implementar métodos que no necesita. 
+  En este caso, las clases Printer y Scanner tienen que implementar el método scan y print, respectivamente, aunque no lo usan.

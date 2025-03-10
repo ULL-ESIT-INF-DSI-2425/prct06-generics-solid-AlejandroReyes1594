@@ -1,0 +1,3 @@
+Se está violando el Principio de Sustitución de Liskov (LSP), que establece que las clases derivadas deben ser intercambiables por sus clases base sin alterar el comportamiento esperado del programa. 
+El problema aquí es que un pingüino (subclase de Bird) no puede volar, lo cual hace que la implementación del método fly() en la clase Bird no sea adecuada para todos los tipos de aves. 
+El método fly() en la clase base debería ser opcional, o debería ser implementado de una manera que permita un comportamiento más específico.

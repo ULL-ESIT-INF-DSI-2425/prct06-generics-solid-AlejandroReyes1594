@@ -1,0 +1,32 @@
+Se pueden identificar varias violaciones a los principios SOLID. A continuación se analiza cada uno de estos principios y se justifica si se está violando alguno de ellos:
+
+1. Single Responsibility Principle (SRP)
+El principio de responsabilidad única establece que una clase debe tener una única razón para cambiar, es decir, debe tener una única responsabilidad.
+
+En el caso de FileManager, esta clase tiene dos responsabilidades:
+
+Leer archivos.
+Escribir archivos.
+Esto viola el principio SRP, ya que la clase tiene más de una responsabilidad. Si en el futuro necesitamos modificar cómo se leen o escriben los archivos (por ejemplo, cambiar de un sistema de archivos local a un almacenamiento en la nube), tendremos que cambiar la misma clase para cubrir ambos aspectos, lo que va en contra del SRP.
+
+2. Open/Closed Principle (OCP)
+Este principio establece que las clases deben estar abiertas para su extensión, pero cerradas para su modificación.
+
+El código actual no violaría explícitamente este principio, ya que si quisiéramos añadir funcionalidades adicionales (por ejemplo, agregar soporte para otros tipos de archivos) podríamos extender las clases sin modificar la implementación original, siempre y cuando se utilicen interfaces. Sin embargo, la violación de SRP podría dificultar la extensión y la adaptabilidad del código a largo plazo.
+
+
+3. Liskov Substitution Principle (LSP)
+Este principio dice que las clases derivadas deben ser reemplazables por sus clases base sin alterar el comportamiento del programa.
+
+En este caso, no hay una jerarquía de clases derivadas y base, pero si se implementaran, como se sugiere para el principio OCP, sería necesario asegurarse de que las clases derivadas (por ejemplo, una implementación de FileReader que lea desde la nube) puedan sustituir a las clases base sin que el código cliente se rompa.
+
+4. Interface Segregation Principle (ISP)
+Este principio dice que las interfaces deben ser específicas para el cliente que las utiliza. No es necesario que una clase implemente métodos que no utilizará.
+
+En el caso de FileManager, la clase implementa tanto la lectura como la escritura en un solo lugar, lo que implica que si se quiere usar solo una de estas funcionalidades, el cliente todavía está obligado a tener ambos métodos.
+
+5. Dependency Inversion Principle (DIP)
+Este principio establece que las clases de alto nivel no deben depender de las clases de bajo nivel, sino de abstracciones (interfaces). Además, las abstracciones no deben depender de los detalles, sino que los detalles deben depender de las abstracciones.
+
+En el código actual, FileManager depende directamente de las implementaciones concretas de la lectura y escritura de archivos usando el módulo fs. Esto podría dificultar la prueba de la clase FileManager, ya que no se puede cambiar fácilmente el comportamiento del sistema de archivos (por ejemplo, usar un sistema de archivos simulado en pruebas).
+

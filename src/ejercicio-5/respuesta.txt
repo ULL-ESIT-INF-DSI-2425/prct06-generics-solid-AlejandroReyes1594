@@ -1,0 +1,10 @@
+Parece haber una violación del Principio de Responsabilidad Única (SRP) y Principio de Abierto/Cerrado (OCP).
+
+Violación del principio SRP: Las clases EmailService y ShortMessageService están cada una encargadas de enviar notificaciones de un solo tipo,
+ lo cual cumple con el principio de responsabilidad única. Sin embargo, la clase Notifier tiene un enfoque ligeramente problemático. 
+ Actualmente, Notifier se encarga tanto de recibir la notificación como de decidir qué servicio utilizar para enviarla (ya sea por correo electrónico o mensaje de texto). 
+ Esto puede hacer que la clase Notifier tenga más de una responsabilidad: recibir la notificación y decidir qué tipo de servicio de notificación utilizar.
+
+Violación del principio OCP: El principio de abierto/cerrado dice que las clases deben estar abiertas a la extensión, pero cerradas a la modificación. 
+La clase Notifier no está preparada para aceptar nuevas fuentes de notificación sin ser modificada. 
+Si en el futuro necesitas agregar más tipos de servicios de notificación (como notificaciones por Push, WebSocket, etc.), necesitarías modificar la clase Notifier, lo que va en contra de este principio.
