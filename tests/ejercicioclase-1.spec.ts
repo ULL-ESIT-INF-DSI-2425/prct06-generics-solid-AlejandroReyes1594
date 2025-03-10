@@ -1,9 +1,10 @@
 /**
- * Fichero test para probar las funcionalidades del codigo
+ * Fichero test para probar las funcionalidades del código
  */
 
 import { describe, expect, test } from 'vitest';
 import { CustomList } from '../src/ejercicio-clase1/custom_list';
+
 describe("CustomList", () => {
   // append
   test("append debe añadir elementos de una lista vacía", () => {
@@ -25,6 +26,13 @@ describe("CustomList", () => {
     const list2 = new CustomList<number>([3, 4]);
     list1.append(list2);
     expect(list2.toArray()).toEqual([3, 4]);
+  });
+
+  test("append debe poder trabajar con tipos varios", () => {
+    const list1 = new CustomList<string>(["ho", "la"])
+    const list2 = new CustomList<string>(["ad", "ios"])
+    list1.append(list2);
+    expect(list1.toArray()).toEqual(["ho","la","ad","ios"])
   });
 
   // concatenate
@@ -49,6 +57,14 @@ describe("CustomList", () => {
     expect(result.toArray()).toEqual([1, 2, 3, 4, 5, 6]);
   });
 
+  test("concatenate debe poder trabajar con tipos varios", () => {
+    const list1 = new CustomList<string>(["ho", "la"])
+    const list2 = new CustomList<string>(["ad", "ios"])
+    const list3 = new CustomList<string>(["que", "tal"]) 
+    const result = CustomList.concatenate(list1, list2, list3);
+    expect(result.toArray()).toEqual(["ho","la","ad","ios","que", "tal"]);
+  });
+
   // filter
   test("filter debe devolver una lista vacía si ningún elemento cumple el predicado", () => {
     const list = new CustomList<number>([1, 2, 3]);
@@ -63,6 +79,12 @@ describe("CustomList", () => {
   test("filter debe manejar correctamente elementos negativos", () => {
     const list = new CustomList<number>([-3, -2, -1, 0, 1, 2, 3]);
     expect(list.filter(n => n < 0).toArray()).toEqual([-3, -2, -1]);
+  });
+
+  // filter con otro tipo
+  test("filter con tipo string debe devolver una lista con los elementos que contienen 'a'", () => {
+    const list = new CustomList<string>(["hola", "mundo", "javascript", "programacion"]);
+    expect(list.filter(s => s.includes("a")).toArray()).toEqual(["hola", "javascript", "programacion"]);
   });
 
   // length
@@ -149,5 +171,13 @@ describe("CustomList", () => {
     let called = false;
     list.forEach(() => called = true);
     expect(called).toBe(false);
+  });
+
+  // forEach con otro tipo
+  test("forEach con tipo string debe ejecutar la función en cada cadena", () => {
+    const list = new CustomList<string>(["uno", "dos", "tres"]);
+    let result = "";
+    list.forEach(s => result += s);
+    expect(result).toBe("unodostres");
   });
 });

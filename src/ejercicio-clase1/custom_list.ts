@@ -85,8 +85,8 @@ export class CustomList<T> {
      */
     reduce<U>(callback: (acc: U, element: T) => U, initialValue: U): U {
         let accumulator = initialValue;
-        for (const item of this.elements) {
-        accumulator = callback(accumulator, item);
+        for (const elemento of this.elements) {
+        accumulator = callback(accumulator, elemento);
         }
         return accumulator;
     }
